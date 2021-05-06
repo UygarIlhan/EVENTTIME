@@ -1,15 +1,20 @@
 package com.example.EVENTTIME.artist;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class ArtistService {
 
+    private final ArtistRepository artistRepository;
+
+    @Autowired
+    public ArtistService(ArtistRepository artistRepository) {
+        this.artistRepository = artistRepository;
+    }
+
     public List<Artist> getArtist(){
-        return List.of(new Artist(1, "Future", LocalDate.of(2021, 10, 01),
-                LocalDate.of(1983, 11, 20), "Columbiahalle"));
+        return artistRepository.findAll();
     }
 }

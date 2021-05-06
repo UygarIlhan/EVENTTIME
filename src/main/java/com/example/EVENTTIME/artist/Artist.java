@@ -1,30 +1,28 @@
 package com.example.EVENTTIME.artist;
 
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class Artist {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     private String name;
     private LocalDate datum;
     private LocalDate geburtsdatum;
     private String location;
 
+    public Artist() {}
 
-    public Artist(int id, String name, LocalDate datum, LocalDate geburtsdatum, String location){
+    public Artist(Long id, String name, LocalDate datum, LocalDate geburtsdatum, String location){
         this.id = id;
         this.name = name;
         this.datum = datum;
         this.geburtsdatum = geburtsdatum;
         this.location = location;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -67,5 +65,13 @@ public class Artist {
                 ", datum=" + datum +
                 ", location='" + location + '\'' +
                 '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
