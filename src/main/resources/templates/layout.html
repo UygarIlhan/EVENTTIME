@@ -1,42 +1,63 @@
 <!DOCTYPE html>
-<html th:fragment="layout (template)" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html th:fragment="layout (template)" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>EVENTTIME</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <link th:href="@{/css/custom.css}" href="#" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body>
 <style>
     body {
         background-image: url('https://images.unsplash.com/photo-1501612780327-45045538702b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
     }
 </style>
+<body>
 <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container container-fluid">
             <a class="navbar-brand" href="/">
-                <img th:src="@{/images/logoo.png}" alt="" width="120" height="120">
+                <img th:src="@{/images/logoo.png}" alt="" width="70" height="70">
+                EVENTTIME
             </a>
-            <a class="nav-link" th:href="@{/}" th:classappend="${#request.requestURI=='/' ? 'active':''}">Home</a>
-            <a class="nav-link" th:href="@{/artists}" th:classappend="${#request.requestURI=='/artists' ? 'active':''}">Artists</a>
-            <a class="nav-link" th:href="@{/genres}" th:classappend="${#request.requestURI=='/genres' ? 'active':''}">Genres</a>
-            <a class="nav-link" th:href="@{/faq}" th:classappend="${#request.requestURI=='/faq' ? 'active':''}">FAQ</a>
-            <a class="navbar navbar-expand-lg navbar-light bg-light"></a>
-            <form class="form-inline">
-                <input class="form-control mr-sm-0" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-0 my-sm-0" type="submit">Search</button>
-            </form>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}" th:classappend="${#request.requestURI=='/' ? 'active':''}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/artists}" th:classappend="${#request.requestURI=='/artists' ? 'active':''}">Artists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/genres}" th:classappend="${#request.requestURI=='/genres' ? 'active':''}">Genres</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div sec:authorize="!isAuthenticated()">
+                        <a class="btn btn-outline-primary me-2" th:href="@{/login}" th:classappend="${#request.requestURI == '/login' ? 'active':''}">Login</a>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <form id="logout-form" method="POST" action="#" th:action="@{/logout}">
+                            <button type="submit" class="btn btn-outline-primary">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </header>
+<main role="main" class="content-wrapper mt-3">
+    <div class="container">
+        <!--/*@thymesVar id="template" type="templates"*/-->
+        <section th:include="${template}"></section>
+    </div>
+</main>
+<!--    <footer class="container">-->
+<!--        <p>The Footer</p>-->
+<!--    </footer>-->
 </body>
 </html>

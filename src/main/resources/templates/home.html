@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>EVENTTIME</title>
+
 </head>
 <body>
-    <p>We'll launch soon.</p>
+    <h1 style="color: antiquewhite">Suchtool für Events und deren Zeiten</h1>
+    <h2 style="color: antiquewhite" th:if="${name}" th:text="'Willkommen ' + ${name} + '!'"></h2>
 </body>
 </html>

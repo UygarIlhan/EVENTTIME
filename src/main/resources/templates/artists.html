@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Artists</title>
 </head>
 <body>
-    Hier werden zukünftig Artists gelistet!
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<h1 style="color: antiquewhite">Suche nach einem*er Künstler*in:</h1>
+
+<div sec:authorize="isAuthenticated()" id="app-1">
+    <input class="form-control mr-sm-2" type="text" :value="message" @input="handleInput" placeholder="Artist to look for">
+    <p style="color: beige">Konzerte von: {{ message }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app-1',
+        data: {
+            message: ""
+        },
+        methods: {
+            handleInput(event) {
+                this.message = event.target.value
+            }
+        }
+    });
+</script>
 </body>
 </html>

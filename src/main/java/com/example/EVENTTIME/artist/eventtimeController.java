@@ -10,10 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class eventtimeController {
 
-    @GetMapping(path = Endpoints.HOME)
-    public ModelAndView showHomePage(){
-        return new ModelAndView(ViewNames.HOME);
-    }
     @GetMapping(path = Endpoints.ARTISTS)
     public ModelAndView showArtistsPage(){
         return new ModelAndView(ViewNames.ARTISTS);
@@ -22,11 +18,6 @@ public class eventtimeController {
     public ModelAndView showGenresPage(){
         return new ModelAndView(ViewNames.GENRES);
     }
-    @GetMapping(path = Endpoints.FAQ)
-    public ModelAndView showFaqPage(){
-        return new ModelAndView(ViewNames.FAQ);
-    }
-
 }
 
 
