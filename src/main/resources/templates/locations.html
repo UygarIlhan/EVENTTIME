@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Locations</title>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<h1 style="color: antiquewhite">Suche Konzerte an einem Bestimmten Ort:</h1>
+<h2 style="color: antiquewhite" sec:authorize="!isAuthenticated()">Logge dich ein oder registriere dich, um nach Konzerten zu suchen.</h2>
+<div sec:authorize="isAuthenticated()" id="app-1">
+    <input class="form-control mr-sm-2" v-model="loc">
+    <button v-on:click="handleInput(loc)">Suche</button>
+
+    <h3 style="color: beige"> Konzerte in {{ loc }}</h3>
+
+    <div class="row md-3">
+        <div v-for="item in message" class="card mx-md-3 bg-secondary" style="width: 18rem;">
+            <div class="card-body text-white">
+                <h5 class="card-title text-white">Stadt: {{ item.city.displayName }}</h5>
+                <h5 class="card-title text-white">Land: {{ item.city.country.displayName }}</h5>
+                <a href="{{item.metroArea.uri}}" target="_blank" class="card-subtitle mb-2 text-white">Konzerte in der N&auml;he</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    new Vue({
+        el: '#app-1',
+        data: {
+            message: ""
+        },
+        methods: {
+            handleInput(loc) {
+                loc.replaceAll(" ", "+")
+                console.log(loc)
+                fetch("https://api.songkick.com/api/3.0/search/locations.json?query=" + loc + "&apikey=ILcx4JpR303NAKE8")
+                    .then(response => response.json())
+                    .then(resp => {
+                        this.message = resp.resultsPage.results.location
+                        console.log(resp.resultsPage.results.location)
+                    });
+
+            }
+        }
+    });
+</script>
+</body>
+</html>

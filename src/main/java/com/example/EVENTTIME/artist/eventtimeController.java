@@ -14,9 +14,9 @@ public class eventtimeController {
     public ModelAndView showArtistsPage(){
         return new ModelAndView(ViewNames.ARTISTS);
     }
-    @GetMapping(path = Endpoints.GENRES)
+    @GetMapping(path = Endpoints.LOCATIONS)
     public ModelAndView showGenresPage(){
-        return new ModelAndView(ViewNames.GENRES);
+        return new ModelAndView(ViewNames.LOCATIONS);
     }
 }
 

@@ -9,9 +9,7 @@ Sie können Events folgen und werden benachrichtigt sobald diese anstehen. Zudem
 Die Suche nach Konzerten kann durch folgende Kriterien erfolgen:
 
 - Künstler
-- Location
-- Land / Stadt
-- Genre
+
 
 Experimentelle Featureüberlegung: Weiterleitung zur Ticketverkaufstelle.
 APIs: Ticketmaster, Songkick
