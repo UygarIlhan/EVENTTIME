@@ -35,6 +35,12 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/locations}" th:classappend="${#request.requestURI=='/genres' ? 'active':''}">Locations</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/getfavoriteslist}" th:classappend="${#request.requestURI=='/getfavoriteslist' ? 'active':''}">Favorites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/addfavorites}" th:classappend="${#request.requestURI=='/addfavorites' ? 'active':''}">AddFavorites</a>
+                    </li>
                 </ul>
                 <div class="d-flex">
                     <div sec:authorize="!isAuthenticated()">

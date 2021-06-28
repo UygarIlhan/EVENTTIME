@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deine Künstler</title>
+</head>
+<body>
+<div style="color: beige">
+<h2>gespeichert</h2>
+<p th:text="'Artist:' + ${artist.name}"></p>
+<p th:text="'Artist:' + ${artist.location}"></p>
+</div>
+</body>
+</html>

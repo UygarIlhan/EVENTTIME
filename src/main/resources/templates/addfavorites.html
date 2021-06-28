@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AddFavorites</title>
+</head>
+<body>
+<div style="color: beige">
+<form action="#" th:action="@{/addfavorites2}" th:object="${artist}" method="post">
+    <h2 class="ueberschrift">Gib deinen Lieblingskuenstler ein: </h2>
+
+            <label for="artist">Artist:</label>
+            <input id="artist" type="text" name="Kuenstler" th:field="*{name}" placeholder="SSIO">
+            <label for="location">Location:</label>
+            <input id="location" type="text" name="Location" th:field="*{location}" placeholder="Frauenfeld">
+            <button type="submit" name="absendeButton">Bestätigen</button>
+            <button type="reset" name="resetButton">Reset</button>
+</form>
+</div>
+</body>
+</html>

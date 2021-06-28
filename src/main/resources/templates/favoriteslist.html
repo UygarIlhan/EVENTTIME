@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::body})}" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Favorites</title>
+</head>
+<body>
+<div style="color: beige">
+<table>
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Location</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${artists.isEmpty()}">
+        <td colspan="2">Keine Artists</td>
+    </tr>
+    <tr th:each="artists : ${artists}">
+        <td><span th:text="${artists.name}">Name</span></td>
+        <td><span th:text="${artists.location}">Location</span></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

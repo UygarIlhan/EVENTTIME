@@ -11,19 +11,25 @@ public class Artist {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
-    private LocalDate datum;
-    private LocalDate geburtsdatum;
     private String location;
+    private String owner;
 
     public Artist() {}
 
-    public Artist(Long id, String name, LocalDate datum, LocalDate geburtsdatum, String location){
+
+
+
+    public Artist(Long id, String name, String location, String owner){
         this.id = id;
         this.name = name;
-        this.datum = datum;
-        this.geburtsdatum = geburtsdatum;
         this.location = location;
+        this.owner = owner;
     }
+
+    public String getOwner() { return owner; }
+
+    public void setOwner(String owner) { this.owner = owner; }
+
 
     public String getName() {
         return name;
@@ -31,22 +37,6 @@ public class Artist {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LocalDate getDatum() {
-        return datum;
-    }
-
-    public void setDatum(LocalDate datum) {
-        this.datum = datum;
-    }
-
-    public LocalDate getGeburtsdatum() {
-        return geburtsdatum;
-    }
-
-    public void setGeburtsdatum(LocalDate geburtsdatum) {
-        this.geburtsdatum = geburtsdatum;
     }
 
     public String getLocation() {
@@ -62,8 +52,8 @@ public class Artist {
         return "Artist{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", datum=" + datum +
                 ", location='" + location + '\'' +
+
                 '}';
     }
 
